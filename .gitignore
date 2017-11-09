@@ -1,4 +1,5 @@
 *
+!custom_components
 !*.yaml
 !*.py
 !scenes
