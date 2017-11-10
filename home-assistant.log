@@ -1,0 +1,5 @@
+2017-11-09 23:50:41 WARNING (MainThread) [homeassistant.setup] Setup of sensor is taking over 10 seconds.
+2017-11-09 23:50:52 WARNING (MainThread) [homeassistant.setup] Setup of tts is taking over 10 seconds.
+2017-11-09 23:51:24 WARNING (MainThread) [homeassistant.components.media_player] Setup of platform cast is taking over 10 seconds.
+2017-11-09 23:51:30 WARNING (MainThread) [homeassistant.components.media_player] Setup of platform cast is taking over 10 seconds.
+2017-11-09 23:51:32 WARNING (MainThread) [homeassistant.components.media_player] Setup of platform cast is taking over 10 seconds.

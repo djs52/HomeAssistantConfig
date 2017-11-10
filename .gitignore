@@ -1,8 +1,4 @@
-*
-!custom_components
-!*.yaml
-!*.py
-!scenes
-!.gitignore
+*~
+*.db
 secrets.yaml
 known_devices.yaml

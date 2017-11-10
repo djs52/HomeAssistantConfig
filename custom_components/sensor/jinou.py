@@ -31,10 +31,10 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     p = Peripheral(config.get(CONF_MAC))
     
     sensor = p.getServiceByUUID(0XAA20).getCharacteristics(0xAA21)[0]
-    sensor.getDescriptors()[0].write("\x01\x00", True) 
+    sensor.getDescriptors()[0].write(b"\x01\x00", True) 
 
     battery = p.getServiceByUUID(AssignedNumbers.batteryService).getCharacteristics(AssignedNumbers.batteryLevel)[0]
-    battery.getDescriptors()[0].write("\x01\x00", True) 
+    battery.getDescriptors()[0].write(b"\x01\x00", True) 
 
     main = JinouMain(sensor, battery, config.get(CONF_NAME))
     add_devices([
@@ -62,7 +62,7 @@ class JinouMain(Entity):
         """Return the state of the sensor."""
         if not self.reading:
              return None
-        return -1 * self.reading[0] + self.reading[1] + self.reading[2]/10.
+        return -1 * self.reading[0] + self.reading[1] + self.reading[2]/10
 
     @property
     def unit_of_measurement(self):
@@ -74,7 +74,7 @@ class JinouMain(Entity):
         Update current conditions.
         """
         _LOGGER.debug("Polling data for %s", self._name)
-        self.reading = map(ord, self._characteristic.read())
+        self.reading = self._characteristic.read()
         _LOGGER.debug("Data collected: %s", self.reading)
 
     @property
@@ -104,9 +104,7 @@ class JinouHumidity(Entity):
         reading = self._sensor.reading
         if not reading:
              return None
-        return {
-            "%": reading[4] + reading[5]/10.0
-        }
+        return reading[4] + reading[5]/10
 
     @property
     def unit_of_measurement(self):
